@@ -26,6 +26,8 @@ const verifyAuth = async (ctx, next) => {
         return ctx.app.emit('error', error, ctx);
     }
 
+    //我们使用一下拿到的user
+    ctx.user = user;
     await next();
 }
 
