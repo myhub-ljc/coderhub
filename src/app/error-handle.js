@@ -20,6 +20,10 @@ const errorHandle = (error, ctx) => {
             status = 400,
             message = '用户密码不正确';
             break;
+        case errorTypes.UNAUTHORIATION:
+            status = 401,
+            message = '未授权';
+            break;
         default:    
             status = 404,
             massage = 'NOT FOUND'
