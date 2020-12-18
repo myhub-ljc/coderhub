@@ -21,6 +21,16 @@ class momentController {
         const result = await momentService.getMomentById(momentId);
 
         ctx.body = result;
+    };
+
+    async list(ctx, next) {
+        //得先获取到offset,size参数
+        const { offset, size } = ctx.query;
+
+        //根据offset, size去请求数据
+        const result = await momentService.getMomentByList(offset, size);
+
+        ctx.body = result;
     }
 }
 
