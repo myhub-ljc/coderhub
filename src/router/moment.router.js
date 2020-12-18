@@ -1,7 +1,8 @@
 const Router = require('koa-router');
 
 const {
-    create 
+    create,
+    detail
 } = require('../controller/moment.controller');
 
 const {
@@ -11,5 +12,6 @@ const {
 const momentRouter = new Router({prefix: '/moment'});
 
 momentRouter.post('/', verifyAuth, create);
+momentRouter.get('/:momentId', detail);
 
 module.exports = momentRouter;

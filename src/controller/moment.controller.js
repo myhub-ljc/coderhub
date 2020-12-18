@@ -11,6 +11,16 @@ class momentController {
 
         //将数据返回到前端
         ctx.body = result;
+    };
+
+    async detail(ctx, next) {
+        //为了获取某条动态，我们得先要拿到请求到参数id;
+        const momentId = ctx.params.momentId;
+
+        //根据id去请求数据
+        const result = await momentService.getMomentById(momentId);
+
+        ctx.body = result;
     }
 }
 
