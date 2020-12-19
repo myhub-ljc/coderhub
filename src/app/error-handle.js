@@ -24,6 +24,10 @@ const errorHandle = (error, ctx) => {
             status = 401,
             message = '未授权';
             break;
+        case errorTypes.UNPERMISSION:
+            status = 401,
+            message = '您不具有操作的权限';
+            break;
         default:    
             status = 404,
             massage = 'NOT FOUND'

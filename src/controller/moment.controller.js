@@ -1,3 +1,4 @@
+const authService = require('../services/auth.service');
 const momentService = require('../services/moment.service');
 
 class momentController {
@@ -29,6 +30,15 @@ class momentController {
 
         //根据offset, size去请求数据
         const result = await momentService.getMomentByList(offset, size);
+
+        ctx.body = result;
+    };
+
+    async update(ctx, next) {
+        const { momentId } = ctx.params;
+        const { content } = ctx.request.body;
+
+        const result = await momentService.update(content, momentId);
 
         ctx.body = result;
     }
