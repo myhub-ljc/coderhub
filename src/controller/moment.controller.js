@@ -1,4 +1,3 @@
-const authService = require('../services/auth.service');
 const momentService = require('../services/moment.service');
 
 class momentController {
@@ -40,6 +39,13 @@ class momentController {
 
         const result = await momentService.update(content, momentId);
 
+        ctx.body = result;
+    };
+
+    async remove(ctx, next) {
+        const { momentId } = ctx.params;
+
+        const result = await momentService.remove(momentId);
         ctx.body = result;
     }
 }
