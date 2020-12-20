@@ -61,12 +61,14 @@ const verifyAuth = async (ctx, next) => {
 }
 
 const verifyPermission = async (ctx, next) => {
-    console.log('验证了权限的middleware');
+    console.log('验证了动态权限的middleware');
 
-    const { momentId } = ctx.params;
+    const [resourceKey] = Object.keys(ctx.params);
+    const tableName = resourceKey.replace('Id', '');
+    const resourceId = ctx.params[resourceKey];
     const { id } = ctx.user;
 
-    const isPermission = await authService.checkMoment(momentId, id);
+    const isPermission = await authService.checkRource(tableName, resourceId, id);
     if(!isPermission) {
         const error = new Error(errorTypes.UNPERMISSION);
         return ctx.app.emit('error', error, ctx);
